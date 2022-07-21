@@ -1,17 +1,19 @@
+import { Google, Facebook, Github } from "@styled-icons/boxicons-logos";
+
 import styles from "./Socials.module.scss";
 
 const Socials = () => {
   return (
     <div className={styles.socialContainer}>
-      <a href="#" className={styles.social}>
-        <i className="fab fa-facebook-f"></i>
-      </a>
-      <a href="#" className={styles.social}>
-        <i className="fab fa-google-plus-g"></i>
-      </a>
-      <a href="#" className={styles.social}>
-        <i className="fab fa-linkedin-in"></i>
-      </a>
+      <div className={styles.social}>
+        <Google />
+      </div>
+      <div className={styles.social}>
+        <Facebook />
+      </div>
+      <div className={styles.social}>
+        <Github />
+      </div>
     </div>
   );
 };

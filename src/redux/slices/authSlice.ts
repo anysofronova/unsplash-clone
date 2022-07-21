@@ -1,26 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
+// import type { RootState } from "../store";
+import { IAuth } from "../../@types/IAuth";
 
-interface CounterState {
-  value: number;
-}
-
-const initialState: CounterState = {
-  value: 0,
+const initialState: IAuth = {
+  email: null,
+  token: null,
+  id: null,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    template: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    setUser: (state, action: PayloadAction<IAuth>) => {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
+      state.id = action.payload.id;
+    },
+    removeUser: (state) => {
+      state.email = null;
+      state.token = null;
+      state.id = null;
     },
   },
 });
 
-export const { template } = authSlice.actions;
+export const { setUser, removeUser } = authSlice.actions;
 
 // export const selectCount = (state: RootState) => state.counter.value;
 

@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
+import "./firebase/firebase";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

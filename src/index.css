@@ -13,19 +13,16 @@
 
 html {
   --color-primary: #ef798a;
+  --transition: all 400ms ease;
   scroll-behavior: smooth;
 
-  /*--color-bg: #3d405b;*/
+  --color-bg: #3d405b;
   --color-text: #fff;
   --color-light: rgba(135, 154, 152, 0.2);
   --color-primary-variant: #d14081;
   --color-primary-variant2: #ff9000;
 
-  --color-bg: #d7c7ca;
-  /*--color-text: #000000;*/
-  /*--color-light: rgba(49, 44, 44, 0.6);*/
-  /*--color-primary-opacity: rgb(215, 158, 169);*/
-  /*--color-primary-variant: #ffa600;*/
+  /*--color-bg: #d7c7ca;*/
 }
 
 ::-webkit-scrollbar {

@@ -1,0 +1,27 @@
+.form {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem;
+  height: 100%;
+  text-align: center;
+  gap: 0.5rem;
+  span {
+    font-size: 0.7rem;
+    padding-bottom: 1rem;
+  }
+  input {
+    background-color: var(--color-light);
+    border: none;
+    padding: 0.7rem 1rem;
+    width: 100%;
+    border-radius: 5px;
+  }
+  .errors {
+    p {
+      margin: 0;
+    }
+  }
+}

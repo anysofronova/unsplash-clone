@@ -1,0 +1,142 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg);
+  .container {
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    .formContainer {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: all 0.6s ease-in-out;
+      &.signInContainer {
+        left: 0;
+        width: 50%;
+        z-index: 2;
+      }
+      &.signUpContainer {
+        left: 0;
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+      }
+    }
+    .overlayContainer {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 100;
+      .overlay {
+        background: var(--color-primary);
+        background: -webkit-linear-gradient(
+          to right,
+          var(--color-primary),
+          var(--color-primary-variant)
+        );
+        background: linear-gradient(
+          to right,
+          var(--color-primary),
+          var(--color-primary-variant)
+        );
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 0;
+        color: #ffffff;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+        .panel {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 0 1rem;
+          text-align: center;
+          top: 0;
+          height: 100%;
+          width: 50%;
+          transform: translateX(0);
+          transition: transform 0.6s ease-in-out;
+          &.left {
+            transform: translateX(0%);
+          }
+          &.right {
+            right: 0;
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+    p {
+      font-size: 0.9rem;
+      font-weight: 100;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+      margin: 20px 0 30px;
+    }
+    a {
+      color: var(--color-primary-variant2);
+      font-size: 14px;
+      text-decoration: none;
+      margin: 15px 0;
+    }
+  }
+
+  .container.rightPanelActive .signInContainer {
+    transform: translateX(100%);
+  }
+
+  .container.rightPanelActive .signUpContainer {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+  }
+
+  @keyframes show {
+    0%,
+    49.99% {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
+
+  .container.rightPanelActive .overlayContainer {
+    transform: translateX(-100%);
+  }
+
+  .container.rightPanelActive .overlay {
+    transform: translateX(50%);
+  }
+
+  .container.rightPanelActive .left {
+    transform: translateX(0);
+  }
+
+  .container.rightPanelActive .right {
+    transform: translateX(20%);
+  }
+}

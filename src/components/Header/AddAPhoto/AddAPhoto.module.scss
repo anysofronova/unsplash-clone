@@ -1,0 +1,14 @@
+.addAPhoto {
+  height: 100%;
+  button {
+    height: 100%;
+    background-color: var(--color-primary-variant2);
+    border-radius: 7px;
+    color: #ffffff;
+    padding: 0 1rem;
+    font-weight: 300;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+  }
+}

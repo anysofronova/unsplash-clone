@@ -4,10 +4,13 @@
   border-radius: 7px;
   padding: 0.5rem 1rem;
   width: 15rem;
-  div {
+  .icon {
     min-width: 20px;
     height: 20px;
     color: var(--color-bg);
+    &.close {
+      cursor: pointer;
+    }
   }
   input {
     font-weight: 300;

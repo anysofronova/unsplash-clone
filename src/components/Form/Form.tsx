@@ -49,7 +49,7 @@ const Form: FC<IForm> = ({
         placeholder={"Password"}
         type={"password"}
       />
-      <button>{buttonText}</button>
+      <button className={"button"}>{buttonText}</button>
       <div className={styles.errors}>
         {isSignUp && errors?.name?.type === "maxLength" && (
           <p>Name cannot exceed 30 characters</p>

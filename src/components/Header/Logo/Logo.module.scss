@@ -1,0 +1,12 @@
+.logo {
+  display: flex;
+  align-items: center;
+  div {
+    width: 30px;
+  }
+  h1 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+}

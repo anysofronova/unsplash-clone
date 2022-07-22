@@ -1,0 +1,17 @@
+.searchPanel {
+  display: flex;
+  background: #ffffff;
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  width: 15rem;
+  div {
+    min-width: 20px;
+    height: 20px;
+    color: var(--color-bg);
+  }
+  input {
+    font-weight: 300;
+    flex: 1;
+    padding: 0 0.5rem;
+  }
+}

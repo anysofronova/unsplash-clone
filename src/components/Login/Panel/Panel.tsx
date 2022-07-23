@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IPanel } from "../../@types/IPanel";
+import { IPanel } from "../../../@types/IPanel";
 
 const Panel: FC<IPanel> = ({ title, subTitle, buttonText, onButton }) => {
   return (

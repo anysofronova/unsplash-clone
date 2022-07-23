@@ -3,8 +3,8 @@ import Logo from "./Logo/Logo";
 import SearchPanel from "./SearchPanel/SearchPanel";
 import { useAuth } from "../../hooks/useAuth";
 import AddAPhoto from "./AddAPhoto/AddAPhoto";
-import LogOut from "../LogInOut/LogOut";
-import LogIn from "../LogInOut/LogIn";
+import LogOut from "./LogInOut/LogOut";
+import LogIn from "./LogInOut/LogIn";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {

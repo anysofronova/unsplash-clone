@@ -9,8 +9,8 @@ import clsx from "clsx";
 
 import { useAppDispatch } from "../../hooks/redux";
 import styles from "./Login.module.scss";
-import Form from "../../components/Form/Form";
-import Panel from "../../components/Panel/Panel";
+import Form from "../../components/Login/Form/Form";
+import Panel from "../../components/Login/Panel/Panel";
 import { InputsType } from "../../@types/InputsType";
 import { setUser } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const Login = () => {
           );
           updateProfile(user.auth.currentUser, {
             displayName: name,
-          }).then(() => navigate("/"));
+          }).then(() => navigate("/home"));
         })
         .catch((error) => console.log(error));
     } else {
@@ -49,7 +49,7 @@ const Login = () => {
               token: user.accessToken,
             })
           );
-          navigate("/");
+          navigate("/home");
         })
         .catch((error) => {
           console.log(error);

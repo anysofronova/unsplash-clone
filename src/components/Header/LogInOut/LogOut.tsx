@@ -1,8 +1,8 @@
 import { LogOut as LogOutIcon } from "@styled-icons/ionicons-outline";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/redux";
-import { removeUser } from "../../redux/slices/authSlice";
+import { useAppDispatch } from "../../../hooks/redux";
+import { removeUser } from "../../../redux/slices/authSlice";
 
 const LogOut = () => {
   const auth = getAuth();

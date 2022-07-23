@@ -2,8 +2,8 @@ import Socials from "../Socials/Socials";
 import styles from "./Form.module.scss";
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IForm } from "../../@types/IForm";
-import { InputsType } from "../../@types/InputsType";
+import { IForm } from "../../../@types/IForm";
+import { InputsType } from "../../../@types/InputsType";
 
 const Form: FC<IForm> = ({
   title,

@@ -7,7 +7,6 @@ import { db } from "../../firebase/firebase";
 import { useAppSelector } from "../../hooks/redux";
 import { IImage } from "../../@types/IImage";
 import { ModalType } from "../../@types/ModalType";
-import { v4 as uuidv4 } from "uuid";
 
 const Modal: FC<ModalType> = ({ setModal }) => {
   const {
@@ -18,7 +17,6 @@ const Modal: FC<ModalType> = ({ setModal }) => {
   const { id } = useAppSelector((state) => state.authSlice);
   const onAddPhoto: SubmitHandler<IImage> = async (data) => {
     await addDoc(collection(db, `users/${id}/photos`), {
-      id: uuidv4(),
       label: data.label,
       photoURL: data.photoURL,
     });
@@ -36,7 +34,7 @@ const Modal: FC<ModalType> = ({ setModal }) => {
               required: true,
               maxLength: 30,
             })}
-            placeholder={"Label"}
+            placeholder={"People Images & Pictures\n"}
           />
         </label>
 
@@ -47,7 +45,7 @@ const Modal: FC<ModalType> = ({ setModal }) => {
               required: true,
               pattern: /^https?:\/\/.*\/.*\??.*$/gim,
             })}
-            placeholder={"Photo URL"}
+            placeholder={"https://images.unsplash.com/photo-1558967333..."}
           />
         </label>
 

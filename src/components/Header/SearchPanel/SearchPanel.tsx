@@ -12,6 +12,7 @@ const SearchPanel = () => {
         type="text"
         value={search}
         onChange={(e) => setSearch(e.currentTarget.value)}
+        placeholder={"Search by name"}
       />
       {search.length > 0 && (
         <Close

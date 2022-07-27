@@ -11,6 +11,7 @@ const Form: FC<IForm> = ({
   isSignUp,
   buttonText,
   singInAndUp,
+  error,
 }) => {
   const {
     register,
@@ -68,6 +69,7 @@ const Form: FC<IForm> = ({
           errors?.password?.type === "required") && (
           <p>The fields are required</p>
         )}
+        {error && <p>Wrong Email or Password</p>}
       </div>
     </form>
   );

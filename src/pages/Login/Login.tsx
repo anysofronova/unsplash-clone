@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [mode, setMode] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const onSetMode = () => setMode(!mode);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -26,16 +27,19 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((result: any) => {
           const { user } = result;
-          dispatch(
-            setUser({
-              email: user.email,
-              id: user.uid,
-              token: user.accessToken,
-            })
-          );
           updateProfile(user.auth.currentUser, {
             displayName: name,
-          }).then(() => navigate("/home"));
+          }).then(() => {
+            dispatch(
+              setUser({
+                email: user.email,
+                id: user.uid,
+                token: user.accessToken,
+                name,
+              })
+            );
+            navigate("/home");
+          });
         })
         .catch((error) => console.log(error));
     } else {
@@ -47,13 +51,13 @@ const Login = () => {
               email: user.email,
               id: user.uid,
               token: user.accessToken,
+              name: user.displayName,
             })
           );
+          setError(false);
           navigate("/home");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(() => setError(true));
     }
   };
 
@@ -76,6 +80,7 @@ const Login = () => {
             isSignUp={false}
             buttonText={"Sign in"}
             singInAndUp={singInAndUp}
+            error={error}
           />
         </div>
         <div className={styles.overlayContainer}>

@@ -1,5 +1,6 @@
 export interface IAuth {
-  email: null | string;
-  token: null | string;
-  id: null | string;
+  email: string;
+  token: string;
+  id: string;
+  name: string;
 }

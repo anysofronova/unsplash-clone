@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-// import type { RootState } from "../store";
 import { IAuth } from "../../@types/IAuth";
+import { RootState } from "../store";
 
 const initialState: IAuth = {
-  email: null,
-  token: null,
-  id: null,
+  email: "",
+  token: "",
+  id: "",
+  name: "",
 };
 
 export const authSlice = createSlice({
@@ -17,17 +18,19 @@ export const authSlice = createSlice({
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
+      state.name = action.payload.name;
     },
     removeUser: (state) => {
-      state.email = null;
-      state.token = null;
-      state.id = null;
+      state.email = "";
+      state.token = "";
+      state.id = "";
+      state.name = "";
     },
   },
 });
 
 export const { setUser, removeUser } = authSlice.actions;
 
-// export const selectCount = (state: RootState) => state.counter.value;
+// export const userId = (state: RootState) => state.authSlice.id;
 
 export default authSlice.reducer;

@@ -22,6 +22,7 @@ const Socials = () => {
         email: user.email,
         id: user.uid,
         token: user.accessToken,
+        name: user.displayName,
       })
     );
     updateProfile(user.auth.currentUser, {

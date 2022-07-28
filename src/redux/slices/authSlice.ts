@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { IAuth } from "../../@types/IAuth";
-import { RootState } from "../store";
 
 const initialState: IAuth = {
   email: "",
@@ -30,7 +29,4 @@ export const authSlice = createSlice({
 });
 
 export const { setUser, removeUser } = authSlice.actions;
-
-// export const userId = (state: RootState) => state.authSlice.id;
-
 export default authSlice.reducer;

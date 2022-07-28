@@ -1,11 +1,39 @@
 .imageItem {
   position: relative;
-  .button {
-    width: 1rem;
-    height: 1.2rem;
+  border-radius: 16px;
+  overflow: hidden;
+  .info {
+    display: none;
     position: absolute;
-    top: 0.1rem;
-    right: 0.1rem;
-    cursor: pointer;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    p {
+      line-height: 22px;
+      color: white;
+      font-weight: 800;
+      position: absolute;
+      bottom: 0.7rem;
+      left: 0.7rem;
+    }
+    .button {
+      width: 4rem;
+      height: 1.2rem;
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      cursor: pointer;
+      border-radius: 38px;
+      background-color: transparent;
+      color: #d03a3a;
+      border: 1px solid #d03a3a;
+    }
+  }
+  &:hover {
+    .info {
+      display: flex;
+    }
   }
 }

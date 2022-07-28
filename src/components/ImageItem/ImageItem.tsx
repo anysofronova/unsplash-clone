@@ -1,25 +1,32 @@
-import { doc, deleteDoc } from "firebase/firestore";
-import { FC } from "react";
-import { Close } from "@styled-icons/evil";
+import { FC, useState } from "react";
 
 import styles from "./ImageItem.module.scss";
 import { IImage } from "../../@types/IImage";
-import { db } from "../../firebase/firebase";
 import { useAppSelector } from "../../hooks/redux";
+import ModalDeleteImage from "../Modals/ModalDeleteImage/ModalDeleteImage";
 
 const ImageItem: FC<IImage> = ({ label, photoURL, id }) => {
+  const [modal, setModal] = useState<boolean>(false);
   const userId = useAppSelector((state) => state.authSlice.id);
-  const onDeleteImage = async () =>
-    await deleteDoc(doc(db, `users/${userId}/photos`, id));
+  const onDeleteImage = () => setModal(true);
+
   return (
-    <div className={styles.imageItem}>
-      <img src={photoURL} alt={label} />
-      {userId && (
-        <button onClick={() => onDeleteImage()} className={styles.button}>
-          <Close />
-        </button>
+    <>
+      {modal && (
+        <ModalDeleteImage setModal={setModal} userId={userId} id={id} />
       )}
-    </div>
+      <div className={styles.imageItem}>
+        <div className={styles.info}>
+          {userId && (
+            <button onClick={() => onDeleteImage()} className={styles.button}>
+              delete
+            </button>
+          )}
+          <p>{label}</p>
+        </div>
+        <img src={photoURL} alt={label} />
+      </div>
+    </>
   );
 };
 

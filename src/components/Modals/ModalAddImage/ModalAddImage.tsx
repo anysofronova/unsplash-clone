@@ -1,14 +1,14 @@
-import styles from "./Modal.module.scss";
+import styles from "./ModalAddImage.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FC } from "react";
 import clsx from "clsx";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
-import { useAppSelector } from "../../hooks/redux";
-import { IImage } from "../../@types/IImage";
-import { ModalType } from "../../@types/ModalType";
+import { db } from "../../../firebase/firebase";
+import { useAppSelector } from "../../../hooks/redux";
+import { IImage } from "../../../@types/IImage";
+import { ModalAddType } from "../../../@types/ModalAddType";
 
-const Modal: FC<ModalType> = ({ setModal }) => {
+const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
   const {
     register,
     handleSubmit,
@@ -76,4 +76,4 @@ const Modal: FC<ModalType> = ({ setModal }) => {
   );
 };
 
-export default Modal;
+export default ModalAddImage;

@@ -1,3 +1,3 @@
-export type ModalType = {
+export type ModalAddType = {
   setModal: (modal: boolean) => void;
 };

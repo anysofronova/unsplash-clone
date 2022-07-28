@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import styles from "./AddAPhoto.module.scss";
-import Modal from "../../Modal/Modal";
+import ModalAddImage from "../../Modals/ModalAddImage/ModalAddImage";
 
 const AddAPhoto: FC = () => {
   const [modal, setModal] = useState<boolean>(false);
@@ -9,7 +9,7 @@ const AddAPhoto: FC = () => {
       <button onClick={() => setModal(true)} className={styles.button}>
         Add a photo
       </button>
-      {modal && <Modal setModal={setModal} />}
+      {modal && <ModalAddImage setModal={setModal} />}
     </div>
   );
 };

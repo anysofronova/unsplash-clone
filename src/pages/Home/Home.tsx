@@ -1,59 +1,70 @@
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./Home.module.scss";
-import { useEffect, useState } from "react";
-import { onSnapshot, query, collection } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
 import { useAppSelector } from "../../hooks/redux";
-import { IImage } from "../../@types/IImage";
 import ImageItem from "../../components/ImageItem/ImageItem";
 import Masonry from "react-masonry-css";
+import { IImage } from "../../@types/IImage";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import { useEffect, useState } from "react";
+import Loader from "../../components/UI/Loader/Loader";
 
 const Home = () => {
-  const auth = useAuth();
-  const [date, setDate] = useState<IImage[]>([]);
+  const { isAuth } = useAuth();
   const { id } = useAppSelector((state) => state.authSlice);
-  const breakpointColumns = {
-    default: 4,
-    1024: 4,
-    768: 3,
-    480: 3,
-    350: 2,
-  };
+  const [data, setData] = useState<IImage[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    let q;
-    if (auth.isAuth) q = query(collection(db, `users/${id}/photos`));
-    else q = query(collection(db, "general"));
+    setIsLoading(true);
+    const q = isAuth
+      ? query(collection(db, `users/${id}/photos`))
+      : query(collection(db, "general"));
     onSnapshot(q, (querySnapshot) => {
       const photos: IImage[] = [];
-      querySnapshot.forEach((doc) =>
-        photos.unshift({
+      querySnapshot.forEach((doc) => {
+        photos.push({
           label: doc.data().label,
           photoURL: doc.data().photoURL,
           id: doc.id,
-        })
-      );
-      setDate(photos);
+        });
+        setData(photos);
+        setIsLoading(false);
+      });
     });
-  }, [id, auth.isAuth]);
+  }, [id, isAuth]);
 
+  const breakpointColumns = {
+    default: 7,
+    1440: 6,
+    1024: 5,
+    920: 4,
+    768: 3,
+    350: 2,
+  };
   return (
     <section className={styles.home}>
-      {date.length === 0 && <div>Sorry</div>}
-      <Masonry
-        breakpointCols={breakpointColumns}
-        className="myMasonryGrid"
-        columnClassName="myMasonryGridColumn"
-      >
-        {date.length > 0 &&
-          date.map((i) => (
-            <ImageItem
-              id={i.id}
-              photoURL={i.photoURL}
-              label={i.label}
-              key={i.id}
-            />
-          ))}
-      </Masonry>
+      {isLoading ? (
+        <Loader />
+      ) : data && data.length === 0 ? (
+        <div>NO RESULTS</div>
+      ) : (
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="myMasonryGrid"
+          columnClassName="myMasonryGridColumn"
+        >
+          {data &&
+            data.length > 0 &&
+            data.map((i: IImage) => (
+              <ImageItem
+                id={i.id}
+                photoURL={i.photoURL}
+                label={i.label}
+                key={i.id}
+              />
+            ))}
+        </Masonry>
+      )}
     </section>
   );
 };

@@ -16,10 +16,12 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 50%;
+    width: 80%;
+    max-width: 600px;
     h2 {
       font-weight: 400;
       line-height: 33px;
+      text-align: center;
     }
     p {
       font-size: 0.8rem;
@@ -44,6 +46,14 @@
         background: transparent;
         cursor: pointer;
         padding: 0;
+        &:hover {
+          color: var(--color-dark-grey);
+        }
+      }
+      button:disabled {
+        background-color: var(--color-grey);
+        border: 1px solid var(--color-dark-grey);
+        cursor: not-allowed;
       }
     }
     .error {

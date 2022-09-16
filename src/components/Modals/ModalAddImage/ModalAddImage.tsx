@@ -1,6 +1,6 @@
 import styles from "./ModalAddImage.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FC } from "react";
+import {FC, useState} from "react";
 import clsx from "clsx";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
@@ -15,12 +15,15 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
     formState: { errors },
   } = useForm<IImage>();
   const { id } = useAppSelector((state) => state.authSlice);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const onAddPhoto: SubmitHandler<IImage> = async (data) => {
+    setIsLoading(true)
     await addDoc(collection(db, `users/${id}/photos`), {
       label: data.label,
       photoURL: data.photoURL,
     });
     setModal(false);
+    setIsLoading(false)
   };
 
   return (
@@ -34,6 +37,7 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
               required: true,
               maxLength: 30,
             })}
+              required
             placeholder={"People Images & Pictures\n"}
           />
         </label>
@@ -45,6 +49,7 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
               required: true,
               pattern: /^https?:\/\/.*\/.*\??.*$/gim,
             })}
+            required
             placeholder={"https://images.unsplash.com/photo-1558967333..."}
           />
         </label>
@@ -56,7 +61,7 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
           >
             Cancel
           </button>
-          <button className={"button"}>Submit</button>
+          <button className={"button"} disabled={isLoading}>Submit</button>
         </div>
 
         <div className={styles.errors}>

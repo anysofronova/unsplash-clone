@@ -13,7 +13,7 @@ const Home = () => {
   const { isAuth } = useAuth();
   const { id } = useAppSelector((state) => state.authSlice);
   const [data, setData] = useState<IImage[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(()=>{
     setIsLoading(true)
     const q = isAuth

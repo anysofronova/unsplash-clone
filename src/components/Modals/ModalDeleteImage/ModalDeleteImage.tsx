@@ -13,8 +13,10 @@ import { db } from "../../../firebase/firebase";
 const ModalDeleteImage: FC<ModalDeleteType> = ({ setModal, userId, id }) => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const checkAPassword = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const auth = getAuth();
     let credential = EmailAuthProvider.credential(
       auth.currentUser?.email || "",
@@ -25,18 +27,23 @@ const ModalDeleteImage: FC<ModalDeleteType> = ({ setModal, userId, id }) => {
         .then(async () => {
           await deleteDoc(doc(db, `users/${userId}/photos`, id));
           setError(false);
+          setIsLoading(false);
         })
-        .catch(() => setError(true));
+        .catch(() => {
+          setError(true);
+          setIsLoading(false);
+        });
     }
   };
 
   return (
     <div className={styles.modal}>
-      <h2>Are you sure?</h2>
       <form className={styles.form}>
+        <h2>Are you sure?</h2>
         <label>
           <p>Password</p>
           <input
+            required={true}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.currentTarget.value)}
@@ -50,7 +57,11 @@ const ModalDeleteImage: FC<ModalDeleteType> = ({ setModal, userId, id }) => {
           >
             Cancel
           </button>
-          <button className={"button"} onClick={checkAPassword}>
+          <button
+            className={"button"}
+            onClick={checkAPassword}
+            disabled={isLoading || !password}
+          >
             Submit
           </button>
         </div>

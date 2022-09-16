@@ -10,30 +10,35 @@
     right: 0;
     bottom: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: var(--transition);
     p {
+      transition: var(--transition);
       line-height: 22px;
       color: white;
-      font-weight: 800;
+      font-weight: 400;
       position: absolute;
-      bottom: 0.7rem;
-      left: 0.7rem;
+      font-size: 0.8rem;
+      bottom: 2rem;
+      left: 1.5rem;
     }
     .button {
-      width: 4rem;
-      height: 1.2rem;
+      transition: var(--transition);
+      padding: 0.3rem 0.9rem;
       position: absolute;
-      top: 0.4rem;
-      right: 0.4rem;
+      top: 1rem;
+      right: 1rem;
       cursor: pointer;
       border-radius: 38px;
-      color: #d03a3a;
-      border: 1px solid #d03a3a;
-      background-color: rgba(255,255,255,.6);
+      color: var(--color-red);
+      border: 1px solid var(--color-red);
+      background-color: transparent;
     }
   }
   &:hover {
+    transition: var(--transition);
     .info {
+      transition: var(--transition);
       display: flex;
     }
   }

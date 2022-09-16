@@ -34,6 +34,7 @@ const App: FC = () => {
         />
       </Route>
       <Route path={"/"} element={<Home />} />
+      <Route path={"*"} element={<NotFound />} />
     </Routes>
   );
 };

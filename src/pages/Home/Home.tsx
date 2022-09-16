@@ -4,9 +4,9 @@ import { useAppSelector } from "../../hooks/redux";
 import ImageItem from "../../components/ImageItem/ImageItem";
 import Masonry from "react-masonry-css";
 import { IImage } from "../../@types/IImage";
-import {collection, onSnapshot, query} from "firebase/firestore";
-import {db} from "../../firebase/firebase";
-import {useEffect, useState} from "react";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import { useEffect, useState } from "react";
 import Loader from "../../components/UI/Loader/Loader";
 
 const Home = () => {
@@ -14,11 +14,11 @@ const Home = () => {
   const { id } = useAppSelector((state) => state.authSlice);
   const [data, setData] = useState<IImage[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  useEffect(()=>{
-    setIsLoading(true)
+  useEffect(() => {
+    setIsLoading(true);
     const q = isAuth
-        ? query(collection(db, `users/${id}/photos`))
-        : query(collection(db, "general"));
+      ? query(collection(db, `users/${id}/photos`))
+      : query(collection(db, "general"));
     onSnapshot(q, (querySnapshot) => {
       const photos: IImage[] = [];
       querySnapshot.forEach((doc) => {
@@ -27,41 +27,44 @@ const Home = () => {
           photoURL: doc.data().photoURL,
           id: doc.id,
         });
-        setData(photos)
-        setIsLoading(false)
+        setData(photos);
+        setIsLoading(false);
       });
-    })
-  },[id, isAuth])
+    });
+  }, [id, isAuth]);
 
   const breakpointColumns = {
-    default: 4,
+    default: 7,
+    1440: 6,
+    1024: 5,
+    920: 4,
     768: 3,
     350: 2,
   };
   return (
     <section className={styles.home}>
-      {isLoading ? <Loader/> :
-      data && data.length === 0 ? (
-          <div>NO RESULTS</div>
+      {isLoading ? (
+        <Loader />
+      ) : data && data.length === 0 ? (
+        <div>NO RESULTS</div>
       ) : (
-          <Masonry
-              breakpointCols={breakpointColumns}
-              className="myMasonryGrid"
-              columnClassName="myMasonryGridColumn"
-          >
-            {data &&
-                data.length > 0 &&
-                data.map((i: IImage) => (
-                    <ImageItem
-                        id={i.id}
-                        photoURL={i.photoURL}
-                        label={i.label}
-                        key={i.id}
-                    />
-                ))}
-          </Masonry>)
-      }
-
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="myMasonryGrid"
+          columnClassName="myMasonryGridColumn"
+        >
+          {data &&
+            data.length > 0 &&
+            data.map((i: IImage) => (
+              <ImageItem
+                id={i.id}
+                photoURL={i.photoURL}
+                label={i.label}
+                key={i.id}
+              />
+            ))}
+        </Masonry>
+      )}
     </section>
   );
 };

@@ -7,6 +7,9 @@ import Home from "./pages/Home/Home";
 const Login = lazy(
   () => import(/* webpackChunkName: "Login" */ "./pages/Login/Login")
 );
+const NotFound = lazy(
+  () => import(/* webpackChunkName: "NotFound" */ "./pages/NotFound/NotFound")
+);
 
 const App: FC = () => {
   return (
@@ -20,7 +23,15 @@ const App: FC = () => {
             </Suspense>
           }
         />
-        <Route path={"/home"} element={<Home />} />
+        <Route path={"home"} element={<Home />} />
+        <Route
+          path={"notFound"}
+          element={
+            <Suspense fallback={<Loader />}>
+              <NotFound />
+            </Suspense>
+          }
+        />
       </Route>
       <Route path={"/"} element={<Home />} />
     </Routes>

@@ -2,6 +2,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  transition: var(--transition);
   .info {
     display: none;
     position: absolute;
@@ -26,9 +27,9 @@
       right: 0.4rem;
       cursor: pointer;
       border-radius: 38px;
-      background-color: transparent;
       color: #d03a3a;
       border: 1px solid #d03a3a;
+      background-color: rgba(255,255,255,.6);
     }
   }
   &:hover {

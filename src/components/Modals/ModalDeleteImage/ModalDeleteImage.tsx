@@ -32,7 +32,7 @@ const ModalDeleteImage: FC<ModalDeleteType> = ({ setModal, userId, id }) => {
 
   return (
     <div className={styles.modal}>
-      <h2>Add a new photo</h2>
+      <h2>Are you sure?</h2>
       <form className={styles.form}>
         <label>
           <p>Password</p>

@@ -21,7 +21,9 @@ html {
   --color-text: #000;
   --color-light: rgba(135, 154, 152, 0.2);
   --color-primary-variant: #d14081;
+
   --color-primary-variant2: #ff9000;
+  --color-orange: #ff9000;
   --color-grey: #bdbdbd;
   --color-red: #eb5757;
   --color-button: #3db46d;
@@ -62,7 +64,8 @@ img {
     border-color: #ffffff;
   }
   &:hover {
-    background-color: var(--color-primary-variant);
+    background-color: var(--color-orange);
+    border: 1px solid var(--color-orange);
   }
 }
 

@@ -4,7 +4,7 @@ export interface IForm {
   title: string;
   subTitle: string;
   isSignUp: boolean;
-  buttonText: string;
+  onSetMode: (val: boolean) => void;
   singInAndUp: (params: InputsType) => void;
   error?: boolean;
 }

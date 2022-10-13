@@ -9,9 +9,9 @@ const Form: FC<IForm> = ({
   title,
   subTitle,
   isSignUp,
-  buttonText,
   singInAndUp,
   error,
+  onSetMode,
 }) => {
   const {
     register,
@@ -50,7 +50,18 @@ const Form: FC<IForm> = ({
         placeholder={"Password"}
         type={"password"}
       />
-      <button className={"button"}>{buttonText}</button>
+      <button className={"button"}>{isSignUp ? "Sign Up" : "Sign in"}</button>
+      {isSignUp ? (
+        <div className={styles.link}>
+          Already have an account?
+          <span onClick={() => onSetMode(false)}>Log In</span>
+        </div>
+      ) : (
+        <div className={styles.link}>
+          Dont have an account yet?
+          <span onClick={() => onSetMode(true)}>Create one</span>
+        </div>
+      )}
       <div className={styles.errors}>
         {isSignUp && errors?.name?.type === "maxLength" && (
           <p>Name cannot exceed 30 characters</p>

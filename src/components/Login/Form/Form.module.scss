@@ -4,11 +4,22 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 2rem;
   height: 100%;
   text-align: center;
-  gap: 0.5rem;
-  span {
+  gap: 1rem;
+  width: 50vw;
+  .link {
+    display: flex;
+    gap: 1rem;
+    span {
+      color: var(--color-orange);
+      cursor: pointer;
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+  & > span {
     font-size: 0.7rem;
     padding-bottom: 1rem;
   }

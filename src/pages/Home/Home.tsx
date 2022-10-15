@@ -4,38 +4,45 @@ import { useAppSelector } from "../../hooks/redux";
 import ImageItem from "../../components/ImageItem/ImageItem";
 import Masonry from "react-masonry-css";
 import { IImage } from "../../@types/IImage";
-import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
 import { useEffect, useState } from "react";
 import Loader from "../../components/UI/Loader/Loader";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import NoResults from "../../components/NoResults/NoResults";
 
 const Home = () => {
+  const [data, setData] = useState<IImage[] | null>(null);
+  const [filterData, setFilterData] = useState<IImage[] | null>(null);
   const { isAuth } = useAuth();
   const { id } = useAppSelector((state) => state.authSlice);
-  const [data, setData] = useState<IImage[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log(data);
-  useEffect(() => {
-    setIsLoading(true);
-    const photos: IImage[] = [];
-    const fetchData = async () => {
-      const q = isAuth
-        ? query(collection(db, `users/${id}/photos`))
-        : query(collection(db, "general"));
-      await onSnapshot(q, (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          photos.push({
-            label: doc.data().label,
-            photoURL: doc.data().photoURL,
-            id: doc.id,
-          });
-        });
-        setData(photos);
-      });
-    };
-    fetchData().then(() => setIsLoading(false));
-  }, [id, isAuth]);
+  const { search } = useAppSelector((state) => state.searchSlice);
+  console.log("render2");
 
+  useEffect(() => {
+    console.log("render");
+    const colRef = isAuth
+      ? query(collection(db, `users/${id}/photos`))
+      : query(collection(db, "general"));
+    onSnapshot(colRef, (snapshot) => {
+      const photos: IImage[] = [];
+      snapshot.forEach((doc) => {
+        photos.push({
+          label: doc.data().label,
+          photoURL: doc.data().photoURL,
+          id: doc.id,
+        });
+      });
+      setData(photos);
+    });
+  }, []);
+
+  useEffect(() => {
+    setFilterData(
+      data?.filter(
+        (i) => i.label.toUpperCase().indexOf(search.toUpperCase()) !== -1
+      ) || null
+    );
+  }, [data, search]);
   const breakpointColumns = {
     default: 7,
     1440: 6,
@@ -46,24 +53,22 @@ const Home = () => {
   };
   return (
     <section className={styles.home}>
-      {(isLoading || data === null) && <Loader />}
-      {data?.length === 0 && <div>NO RESULTS</div>}
-      {data && (
+      {filterData === null && <Loader />}
+      {filterData?.length === 0 && <NoResults isNoResults={true} />}
+      {filterData && (
         <Masonry
           breakpointCols={breakpointColumns}
           className="myMasonryGrid"
           columnClassName="myMasonryGridColumn"
         >
-          {data &&
-            data.length > 0 &&
-            data.map((i: IImage) => (
-              <ImageItem
-                id={i.id}
-                photoURL={i.photoURL}
-                label={i.label}
-                key={i.id}
-              />
-            ))}
+          {filterData.map((i: IImage) => (
+            <ImageItem
+              id={i.id}
+              photoURL={i.photoURL}
+              label={i.label}
+              key={i.id}
+            />
+          ))}
         </Masonry>
       )}
     </section>

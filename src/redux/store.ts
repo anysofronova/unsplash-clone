@@ -12,9 +12,11 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { mainApi } from "./services/mainApi";
+import searchSlice from "./slices/searchSlice";
 
 const rootReducer = combineReducers({
   authSlice,
+  searchSlice,
   [mainApi.reducerPath]: mainApi.reducer,
 });
 

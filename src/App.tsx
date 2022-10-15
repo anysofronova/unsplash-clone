@@ -8,33 +8,33 @@ const Login = lazy(
   () => import(/* webpackChunkName: "Login" */ "./pages/Login/Login")
 );
 const NotFound = lazy(
-  () => import(/* webpackChunkName: "NotFound" */ "./pages/NotFound/NotFound")
+  () => import(/* webpackChunkName: "NotFound" */ "./pages/NotFound/NotFount")
 );
 
 const App: FC = () => {
   return (
     <Routes>
-      <Route path={"/"} element={<MainLayout />}>
+      <Route path={""} element={<MainLayout />}>
         <Route
-          path={"login"}
+          path={"/login"}
           element={
             <Suspense fallback={<Loader />}>
               <Login />
             </Suspense>
           }
         />
-        <Route path={"home"} element={<Home />} />
+        <Route path={"/home"} element={<Home />} />
         <Route
-          path={"notFound"}
+          path={"/notFound"}
           element={
             <Suspense fallback={<Loader />}>
               <NotFound />
             </Suspense>
           }
         />
+        <Route path={"/"} element={<Home />} />
+        <Route path={"*"} element={<NotFound />} />
       </Route>
-      <Route path={"/"} element={<Home />} />
-      <Route path={"*"} element={<NotFound />} />
     </Routes>
   );
 };

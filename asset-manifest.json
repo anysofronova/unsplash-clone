@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/unsplash-clone/static/css/main.9eea364d.css",
+    "main.js": "/unsplash-clone/static/js/main.a5376a9e.js",
+    "Login.css": "/unsplash-clone/static/css/Login.cf5732ad.chunk.css",
+    "Login.js": "/unsplash-clone/static/js/Login.8ef0c735.chunk.js",
+    "NotFound.js": "/unsplash-clone/static/js/NotFound.cd70a51f.chunk.js",
+    "static/js/787.37c49fef.chunk.js": "/unsplash-clone/static/js/787.37c49fef.chunk.js",
+    "static/media/placeholder.webp": "/unsplash-clone/static/media/placeholder.67cfd133a77f6e9c2523.webp",
+    "index.html": "/unsplash-clone/index.html",
+    "main.9eea364d.css.map": "/unsplash-clone/static/css/main.9eea364d.css.map",
+    "main.a5376a9e.js.map": "/unsplash-clone/static/js/main.a5376a9e.js.map",
+    "Login.cf5732ad.chunk.css.map": "/unsplash-clone/static/css/Login.cf5732ad.chunk.css.map",
+    "Login.8ef0c735.chunk.js.map": "/unsplash-clone/static/js/Login.8ef0c735.chunk.js.map",
+    "NotFound.cd70a51f.chunk.js.map": "/unsplash-clone/static/js/NotFound.cd70a51f.chunk.js.map",
+    "787.37c49fef.chunk.js.map": "/unsplash-clone/static/js/787.37c49fef.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9eea364d.css",
+    "static/js/main.a5376a9e.js"
+  ]
+}

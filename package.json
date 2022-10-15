@@ -2,6 +2,7 @@
   "name": "unsplash-clone",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://anysofronova.github.io/unsplash-clone",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@styled-icons/boxicons-logos": "^10.38.0",
@@ -31,6 +32,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

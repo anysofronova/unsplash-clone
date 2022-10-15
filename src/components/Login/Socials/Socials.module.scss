@@ -1,7 +1,6 @@
 .socialContainer {
   display: flex;
   gap: 1rem;
-  margin: 1rem 0;
   .social {
     border: 1px solid var(--color-light);
     border-radius: 50%;
@@ -10,7 +9,7 @@
     align-items: center;
     height: 30px;
     width: 30px;
-    color: var(--color-primary-variant2);
+    color: var(--color-orange);
     cursor: pointer;
   }
 }

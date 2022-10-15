@@ -1,8 +1,11 @@
-import styles from "./NotFound.module.scss";
+import styles from "./NoResults.module.scss";
 import { Link } from "react-router-dom";
 import { FC } from "react";
 
-const NotFound: FC = () => {
+type TNoResults = {
+  isNoResults: boolean;
+};
+const NoResults: FC<TNoResults> = ({ isNoResults }) => {
   return (
     <div className={styles.notFound}>
       <div className={styles.face}>
@@ -16,12 +19,16 @@ const NotFound: FC = () => {
         <div className={styles.mouth} />
       </div>
 
-      <h1 className={styles.title}>Oops! Something went wrong!</h1>
-      <Link to={"/"}>
-        <div className={styles.btn}>Return to Home</div>
-      </Link>
+      <h1 className={styles.title}>
+        {isNoResults ? "No results" : "Oops! Something went wrong!"}
+      </h1>
+      {!isNoResults && (
+        <Link to={"/"}>
+          <div className={styles.btn}>Return to Home</div>
+        </Link>
+      )}
     </div>
   );
 };
 
-export default NotFound;
+export default NoResults;

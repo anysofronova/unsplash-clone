@@ -53,11 +53,11 @@
       button:disabled {
         background-color: var(--color-grey);
         border: 1px solid var(--color-dark-grey);
-        cursor: not-allowed;
+        cursor: wait;
       }
     }
     .error {
-      color: var(--color-primary-variant);
+      color: var(--color-red);
       text-align: center;
     }
   }

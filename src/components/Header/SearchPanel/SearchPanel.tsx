@@ -1,10 +1,12 @@
 import styles from "./SearchPanel.module.scss";
 import { Search, Close } from "@styled-icons/evil";
-import { useState } from "react";
 import clsx from "clsx";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { setSearch } from "../../../redux/slices/searchSlice";
 
 const SearchPanel = () => {
-  const [search, setSearch] = useState<string>("");
+  const { search } = useAppSelector((state) => state.searchSlice);
+  const dispatch = useAppDispatch();
   return (
     <div className={styles.searchContainer}>
       <div className={styles.searchPanel}>
@@ -12,11 +14,11 @@ const SearchPanel = () => {
         <input
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.currentTarget.value)}
+          onChange={(e) => dispatch(setSearch(e.currentTarget.value))}
           placeholder={"Search by name"}
         />
         <Close
-          onClick={() => setSearch("")}
+          onClick={() => dispatch(setSearch(""))}
           className={clsx(
             styles.icon,
             styles.close,

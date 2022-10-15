@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import { FC, SyntheticEvent, useState } from "react";
+import defaultImage from "../../assets/placeholder.webp";
 
 import styles from "./ImageItem.module.scss";
 import { IImage } from "../../@types/IImage";
@@ -24,7 +25,14 @@ const ImageItem: FC<IImage> = ({ label, photoURL, id }) => {
           )}
           <p>{label}</p>
         </div>
-        <img src={photoURL} alt={label} />
+        <img
+          src={photoURL}
+          alt={label}
+          onError={(event: SyntheticEvent<HTMLImageElement, Event>) => {
+            event.currentTarget.src = defaultImage;
+            event.currentTarget.onerror = null;
+          }}
+        />
       </div>
     </>
   );

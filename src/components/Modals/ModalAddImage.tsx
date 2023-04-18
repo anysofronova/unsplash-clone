@@ -1,14 +1,14 @@
-import styles from "./ModalAddImage.module.scss";
-import { SubmitHandler, useForm } from "react-hook-form";
-import {FC, useState} from "react";
+import { FC, useState } from "react";
 import clsx from "clsx";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../../firebase/firebase";
-import { useAppSelector } from "../../../hooks/redux";
-import { IImage } from "../../../@types/IImage";
-import { ModalAddType } from "../../../@types/ModalAddType";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
+import { db } from "../../firebase";
+import { useAppSelector } from "../../hooks";
+import styles from "./ModalAddImage.module.scss";
+import { IImage, ModalAddType } from "../../@types";
+
+export const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
   const {
     register,
     handleSubmit,
@@ -17,13 +17,13 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
   const { id } = useAppSelector((state) => state.authSlice);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const onAddPhoto: SubmitHandler<IImage> = async (data) => {
-    setIsLoading(true)
+    setIsLoading(true);
     await addDoc(collection(db, `users/${id}/photos`), {
       label: data.label,
       photoURL: data.photoURL,
     });
     setModal(false);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   return (
@@ -37,8 +37,8 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
               required: true,
               maxLength: 30,
             })}
-              required
-            placeholder={"People Images & Pictures\n"}
+            required
+            placeholder={"People Images & Pictures"}
           />
         </label>
 
@@ -61,7 +61,9 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
           >
             Cancel
           </button>
-          <button className={"button"} disabled={isLoading}>Submit</button>
+          <button className={"button"} disabled={isLoading}>
+            Submit
+          </button>
         </div>
 
         <div className={styles.errors}>
@@ -80,5 +82,3 @@ const ModalAddImage: FC<ModalAddType> = ({ setModal }) => {
     </div>
   );
 };
-
-export default ModalAddImage;

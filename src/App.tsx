@@ -1,14 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
 import { FC, lazy, Suspense } from "react";
-import Loader from "./components/UI/Loader/Loader";
-import Home from "./pages/Home/Home";
+import { Routes, Route } from "react-router-dom";
 
-const Login = lazy(
-  () => import(/* webpackChunkName: "Login" */ "./pages/Login/Login")
+import { Home } from "./pages";
+import { MainLayout } from "./layouts";
+import { Loader } from "./components";
+
+const Login = lazy(() =>
+  import("./pages").then((module) => ({ default: module.Login }))
 );
-const NotFound = lazy(
-  () => import(/* webpackChunkName: "NotFound" */ "./pages/NotFound/NotFount")
+const NotFound = lazy(() =>
+  import("./pages").then((module) => ({ default: module.NotFound }))
 );
 
 const App: FC = () => {

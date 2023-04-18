@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
-import styles from "./AddAPhoto.module.scss";
-import ModalAddImage from "../../Modals/ModalAddImage/ModalAddImage";
 
-const AddAPhoto: FC = () => {
+import styles from "./AddAPhoto.module.scss";
+import { ModalAddImage } from "../../Modals";
+
+export const AddAPhoto: FC = () => {
   const [modal, setModal] = useState<boolean>(false);
   return (
     <div className={styles.addAPhoto}>
@@ -13,5 +14,3 @@ const AddAPhoto: FC = () => {
     </div>
   );
 };
-
-export default AddAPhoto;

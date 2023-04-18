@@ -1,11 +1,11 @@
-import Socials from "../Socials/Socials";
-import styles from "./Form.module.scss";
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IForm } from "../../../@types/IForm";
-import { InputsType } from "../../../@types/InputsType";
 
-const Form: FC<IForm> = ({
+import { Socials } from "../Socials";
+import styles from "./Form.module.scss";
+import { IForm, InputsType } from "../../../@types";
+
+export const Form: FC<IForm> = ({
   title,
   subTitle,
   isSignUp,
@@ -58,7 +58,7 @@ const Form: FC<IForm> = ({
         </div>
       ) : (
         <div className={styles.link}>
-          Dont have an account yet?
+          Don't have an account yet?
           <span onClick={() => onSetMode(true)}>Create one</span>
         </div>
       )}
@@ -80,10 +80,13 @@ const Form: FC<IForm> = ({
           errors?.password?.type === "required") && (
           <p>The fields are required</p>
         )}
-        {error && <p>Wrong Email or Password</p>}
+        {error === "Firebase: Error (auth/email-already-in-use)." && (
+          <p>That email address is already in use</p>
+        )}
+        {error === "Firebase: Error (auth/wrong-password)." && (
+          <p>Wrong Email or Password</p>
+        )}
       </div>
     </form>
   );
 };
-
-export default Form;

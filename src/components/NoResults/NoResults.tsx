@@ -1,11 +1,12 @@
-import styles from "./NoResults.module.scss";
-import { Link } from "react-router-dom";
 import { FC } from "react";
+import { Link } from "react-router-dom";
+
+import styles from "./NoResults.module.scss";
 
 type TNoResults = {
   isNoResults: boolean;
 };
-const NoResults: FC<TNoResults> = ({ isNoResults }) => {
+export const NoResults: FC<TNoResults> = ({ isNoResults }) => {
   return (
     <div className={styles.notFound}>
       <div className={styles.face}>
@@ -30,5 +31,3 @@ const NoResults: FC<TNoResults> = ({ isNoResults }) => {
     </div>
   );
 };
-
-export default NoResults;

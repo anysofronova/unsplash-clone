@@ -31,7 +31,7 @@
     input {
       border: 1px solid var(--color-dark-grey);
       padding: 0.5rem 0.8rem;
-      border-radius: 12px;
+      border-radius: 5px;
       width: 100%;
       font-weight: 300;
       &::placeholder {
@@ -46,6 +46,7 @@
         background: transparent;
         cursor: pointer;
         padding: 0;
+        transition: var(--transition);
         &:hover {
           color: var(--color-dark-grey);
         }

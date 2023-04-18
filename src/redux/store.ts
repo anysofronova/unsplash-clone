@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import authSlice from "./slices/authSlice";
 import {
   persistStore,
   persistReducer,
@@ -12,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { mainApi } from "./services/mainApi";
+import authSlice from "./slices/authSlice";
 import searchSlice from "./slices/searchSlice";
 
 const rootReducer = combineReducers({

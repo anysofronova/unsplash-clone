@@ -1,10 +1,11 @@
-import { LogOut as LogOutIcon } from "@styled-icons/ionicons-outline";
-import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../hooks/redux";
+import { getAuth, signOut } from "firebase/auth";
+import { LogOut as LogOutIcon } from "@styled-icons/ionicons-outline";
+
+import { useAppDispatch } from "../../../hooks";
 import { removeUser } from "../../../redux/slices/authSlice";
 
-const LogOut = () => {
+export const LogOut = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -21,5 +22,3 @@ const LogOut = () => {
     </div>
   );
 };
-
-export default LogOut;

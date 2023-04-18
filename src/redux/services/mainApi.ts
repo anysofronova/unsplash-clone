@@ -1,7 +1,8 @@
-import {createApi, fakeBaseQuery} from "@reduxjs/toolkit/query/react";
-import { IImage } from "../../@types/IImage";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import { collection, addDoc, onSnapshot, query } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
+
+import { db } from "../../firebase";
+import { IImage } from "../../@types";
 
 export interface IResponse {
   isAuth: boolean;
@@ -9,18 +10,18 @@ export interface IResponse {
 }
 
 export const mainApi = createApi({
-  reducerPath: 'mainApi',
-  baseQuery:  fakeBaseQuery(),
+  reducerPath: "mainApi",
+  baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
     fetchImages: builder.query<IImage[], IResponse>({
-       queryFn: async({ isAuth, id }) => {
+      queryFn: async ({ isAuth, id }) => {
         const q = isAuth
           ? query(collection(db, `users/${id}/photos`))
           : query(collection(db, "general"));
         const photos: IImage[] = [];
         await onSnapshot(q, (querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            console.log('doc', doc)
+            console.log("doc", doc);
             photos.push({
               label: doc.data().label,
               photoURL: doc.data().photoURL,
@@ -29,12 +30,12 @@ export const mainApi = createApi({
           });
         });
         return {
-          data: photos
+          data: photos,
         };
       },
     }),
     addImage: builder.mutation<IImage, IImage>({
-      queryFn: async({ id, label, photoURL }) => {
+      queryFn: async ({ id, label, photoURL }) => {
         try {
           await addDoc(collection(db, `users/${id}/photos`), {
             label,

@@ -5,17 +5,17 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useAppDispatch } from "../../hooks/redux";
-import styles from "./Login.module.scss";
-import Form from "../../components/Login/Form/Form";
-import { InputsType } from "../../@types/InputsType";
-import { setUser } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
-import clsx from "clsx";
 
-const Login = () => {
+import { Form } from "../../components";
+import styles from "./Login.module.scss";
+import { InputsType } from "../../@types";
+import { useAppDispatch } from "../../hooks";
+import { setUser } from "../../redux/slices/authSlice";
+
+export const Login = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const onSetMode = (val: boolean): void => setIsSignUp(val);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,10 +36,14 @@ const Login = () => {
                 name,
               })
             );
+            setError("");
             navigate("/home");
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error.message);
+          setError(error.message);
+        });
     } else {
       signInWithEmailAndPassword(auth, email, password)
         .then((result: any) => {
@@ -52,30 +56,19 @@ const Login = () => {
               name: user.displayName,
             })
           );
-          setError(false);
+          setError("");
           navigate("/home");
         })
-        .catch(() => setError(true));
+        .catch((error) => {
+          console.log(error.message);
+          setError(error.message);
+        });
     }
   };
 
   return (
     <div className={styles.login}>
       <div className={styles.container}>
-        <div className={styles.choose}>
-          <div
-            className={clsx(styles.option, !isSignUp && styles.active)}
-            onClick={() => onSetMode(false)}
-          >
-            <span>Sign In</span>
-          </div>
-          <div
-            className={clsx(styles.option, isSignUp && styles.active)}
-            onClick={() => onSetMode(true)}
-          >
-            <span>Sign Up</span>
-          </div>
-        </div>
         {isSignUp && (
           <div className={styles.formContainer}>
             <Form
@@ -84,6 +77,7 @@ const Login = () => {
               isSignUp={isSignUp}
               onSetMode={onSetMode}
               singInAndUp={singInAndUp}
+              error={error}
             />
           </div>
         )}
@@ -103,5 +97,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

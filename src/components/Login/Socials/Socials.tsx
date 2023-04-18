@@ -1,17 +1,17 @@
-import { Google } from "@styled-icons/boxicons-logos";
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { Google } from "@styled-icons/boxicons-logos";
 
 import styles from "./Socials.module.scss";
+import { useAppDispatch } from "../../../hooks";
 import { setUser } from "../../../redux/slices/authSlice";
-import { useAppDispatch } from "../../../hooks/redux";
-import { useNavigate } from "react-router-dom";
 
-const Socials = () => {
+export const Socials = () => {
   const auth = getAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -44,5 +44,3 @@ const Socials = () => {
     </div>
   );
 };
-
-export default Socials;

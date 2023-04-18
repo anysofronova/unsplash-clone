@@ -1,12 +1,14 @@
-import styles from "./SearchPanel.module.scss";
-import { Search, Close } from "@styled-icons/evil";
 import clsx from "clsx";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { setSearch } from "../../../redux/slices/searchSlice";
+import { Search, Close } from "@styled-icons/ionicons-outline";
 
-const SearchPanel = () => {
+import styles from "./SearchPanel.module.scss";
+import { setSearch } from "../../../redux/slices/searchSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+
+export const SearchPanel = () => {
   const { search } = useAppSelector((state) => state.searchSlice);
   const dispatch = useAppDispatch();
+
   return (
     <div className={styles.searchContainer}>
       <div className={styles.searchPanel}>
@@ -29,5 +31,3 @@ const SearchPanel = () => {
     </div>
   );
 };
-
-export default SearchPanel;

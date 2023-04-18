@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_ID,
+  apiKey: "AIzaSyB1koV7z_lz9uSqIS41Kimegi6sjeHhfjM",
+  authDomain: "unsplash-21e9a.firebaseapp.com",
+  projectId: "unsplash-21e9a",
+  storageBucket: "unsplash-21e9a.appspot.com",
+  messagingSenderId: "934597752846",
+  appId: "1:934597752846:web:57838e8e5fb49e3465a45f",
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,6 +1,6 @@
 import styles from "./UserProfile.module.scss";
 
-const UserProfile = () => {
+export const UserProfile = () => {
   return (
     <div className={styles.userProfile}>
       <div>Name</div>
@@ -10,5 +10,3 @@ const UserProfile = () => {
     </div>
   );
 };
-
-export default UserProfile;

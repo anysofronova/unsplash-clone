@@ -1,7 +1,13 @@
 import { FC } from "react";
-import { IPanel } from "../../../@types/IPanel";
 
-const Panel: FC<IPanel> = ({ title, subTitle, buttonText, onButton }) => {
+import { IPanel } from "../../../@types";
+
+export const Panel: FC<IPanel> = ({
+  title,
+  subTitle,
+  buttonText,
+  onButton,
+}) => {
   return (
     <>
       <h2>{title}</h2>
@@ -12,5 +18,3 @@ const Panel: FC<IPanel> = ({ title, subTitle, buttonText, onButton }) => {
     </>
   );
 };
-
-export default Panel;

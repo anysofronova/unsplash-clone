@@ -1,13 +1,13 @@
+import React from 'react'
 import ReactDOM from "react-dom/client";
-import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { HashRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import "./index.scss";
-import reportWebVitals from "./reportWebVitals";
-import store, { persistor } from "./redux/store";
-import "./firebase/firebase";
 import App from "./App";
+import "./firebase/firebase";
+import store, { persistor } from "./redux/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,4 +21,3 @@ root.render(
     </Provider>
   </HashRouter>
 );
-reportWebVitals();

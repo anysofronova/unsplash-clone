@@ -1,25 +1,22 @@
-import { useAuth } from "../../hooks/useAuth";
-import styles from "./Home.module.scss";
-import { useAppSelector } from "../../hooks/redux";
-import ImageItem from "../../components/ImageItem/ImageItem";
-import Masonry from "react-masonry-css";
-import { IImage } from "../../@types/IImage";
 import { useEffect, useState } from "react";
-import Loader from "../../components/UI/Loader/Loader";
+import Masonry from "react-masonry-css";
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
-import NoResults from "../../components/NoResults/NoResults";
 
-const Home = () => {
+import { db } from "../../firebase";
+import { useAuth } from "../../hooks";
+import { IImage } from "../../@types";
+import styles from "./Home.module.scss";
+import { useAppSelector } from "../../hooks";
+import { ImageItem, NoResults, Loader } from "../../components";
+
+export const Home = () => {
   const [data, setData] = useState<IImage[] | null>(null);
   const [filterData, setFilterData] = useState<IImage[] | null>(null);
   const { isAuth } = useAuth();
   const { id } = useAppSelector((state) => state.authSlice);
   const { search } = useAppSelector((state) => state.searchSlice);
-  console.log("render2");
 
   useEffect(() => {
-    console.log("render");
     const colRef = isAuth
       ? query(collection(db, `users/${id}/photos`))
       : query(collection(db, "general"));
@@ -74,5 +71,3 @@ const Home = () => {
     </section>
   );
 };
-
-export default Home;

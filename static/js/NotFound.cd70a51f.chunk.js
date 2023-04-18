@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkunsplash_clone=self.webpackChunkunsplash_clone||[]).push([[187],{3229:function(n,u,s){s.r(u),s.d(u,{NotFount:function(){return c}});var e=s(675),t=s(3329),c=function(){return(0,t.jsx)(e.Z,{isNoResults:!1})};u.default=c}}]);
-//# sourceMappingURL=NotFound.cd70a51f.chunk.js.map
